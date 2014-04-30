@@ -9,6 +9,10 @@ class EventsController < ApplicationController
       @events = current_user.events.order_by(:start_date => :desc) if logged_in?
       @my = true
     end
+		respond_to do |format|
+			format.html
+			format.json { render json: Event.all_public }
+		end
   end
 
   def new
